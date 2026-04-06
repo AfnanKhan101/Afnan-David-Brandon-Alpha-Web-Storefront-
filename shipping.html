@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" ng-app="shippingApp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Big Chungus Bakery | Shipping Selection</title>
+
+<!-- Team Task Author: Khan, Afnan Ali - Task 1 HTML -->
+<!-- Team Task Author: Khan, Afnan Ali - Task 2 CSS -->
+<!-- Team Task Author: Khan, Afnan Ali - Task 3 Bootstrap -->
+<!-- Team Task Author: David Baram - Task 4 JavaScript -->
+<!-- Team Task Author: David Baram - Task 5 JSON Product Document -->
+<!-- Team Task Author: David Baram - Task 6 jQuery -->
+<!-- Team Task Author: Brandon Holzhauer - Task 8 AngularJS -->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<style>
+  :root {
+    --bg: #fffaf3;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --shadow: 0 10px 30px rgba(0,0,0,.08);
+    --radius: 18px;
+    --max-width: 1100px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(1200px 600px at 20% -10%, rgba(234,88,12,.18), transparent 55%),
+      var(--bg);
+  }
+
+  header, nav, main, footer {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 16px;
+  }
+
+  .banner {
+    padding: 18px;
+    background: rgba(255,255,255,.8);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .primary-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    margin: 0;
+    background: rgba(255,255,255,.7);
+    border-radius: var(--radius);
+  }
+
+  .primary-nav a {
+    padding: 10px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .primary-nav a:hover {
+    background: rgba(234,88,12,.12);
+  }
+
+  .card-box {
+    background: rgba(255,255,255,.92);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .text-danger {
+    min-height: 24px;
+    font-size: 0.95rem;
+  }
+
+  .json-box {
+    background: #111827;
+    color: #f9fafb;
+    padding: 16px;
+    border-radius: 12px;
+    overflow-x: auto;
+    min-height: 220px;
+    white-space: pre-wrap;
+  }
+</style>
+</head>
+<body ng-controller="ShippingController">
+
+<header>
+  <section class="banner">
+    <h1 class="mb-2">Big Chungus Bakery</h1>
+    <p class="mb-0">Shipping Selection Web Page</p>
+  </section>
+</header>
+
+<nav class="primary-nav">
+  <ul>
+    <li><a href="index.html">Storefront</a></li>
+    <li><a href="product.html">Product Management</a></li>
+    <li><a href="shipping.html">Shipping Selection</a></li>
+    <li><a href="shoppingcart.html">Shopping Cart</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="card-box">
+    <h2 class="mb-4">Enter Shipping Details</h2>
+
+    <form id="shippingForm" novalidate>
+      <div class="mb-3">
+        <label for="address" class="form-label">Shipping Destination Address</label>
+        <input type="text" id="address" class="form-control" placeholder="123 Main St" ng-model="shipping.address">
+        <div id="addressError" class="text-danger"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" id="city" class="form-control" placeholder="Orlando" ng-model="shipping.city">
+        <div id="cityError" class="text-danger"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="state" class="form-label">State</label>
+        <input type="text" id="state" class="form-control" maxlength="2" placeholder="FL" ng-model="shipping.state">
+        <div id="stateError" class="text-danger"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="zip" class="form-label">ZIP Code</label>
+        <input type="text" id="zip" class="form-control" maxlength="5" placeholder="32801" ng-model="shipping.zip">
+        <div id="zipError" class="text-danger"></div>
+      </div>
+
+      <div class="mb-3">
+        <label for="carrier" class="form-label">Shipping Carrier</label>
+        <select id="carrier" class="form-select" ng-model="shipping.carrier">
+          <option value="">Select Carrier</option>
+          <option>FedEx</option>
+          <option>UPS</option>
+          <option>DHL</option>
+        </select>
+        <div id="carrierError" class="text-danger"></div>
+      </div>
+
+      <div class="mb-4">
+        <label for="method" class="form-label">Shipping Method</label>
+        <select id="method" class="form-select" ng-model="shipping.method">
+          <option value="">Select Method</option>
+          <option>Overnight</option>
+          <option>2nd Day</option>
+          <option>Ground</option>
+        </select>
+        <div id="methodError" class="text-danger"></div>
+      </div>
+
+      <div class="d-flex gap-2 flex-wrap">
+        <button type="button" id="saveShippingBtn" class="btn btn-primary">Save Shipping Details</button>
+        <a href="shoppingcart.html" class="btn btn-success">Go to Shopping Cart</a>
+      </div>
+    </form>
+  </section>
+</main>
+
+<main>
+  <section class="card-box">
+    <h3 class="mb-3">Shipping Information JSON</h3>
+    <pre class="json-box">{{ shippingJson | json }}</pre>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Big Chungus Bakery</p>
+</footer>
+
+<script>
+  /* Team Task Author: David Baram - Task 4 JavaScript */
+  function validateShippingForm() {
+    let isValid = true;
+
+    document.getElementById("addressError").textContent = "";
+    document.getElementById("cityError").textContent = "";
+    document.getElementById("stateError").textContent = "";
+    document.getElementById("zipError").textContent = "";
+    document.getElementById("carrierError").textContent = "";
+    document.getElementById("methodError").textContent = "";
+
+    const address = document.getElementById("address").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const state = document.getElementById("state").value.trim();
+    const zip = document.getElementById("zip").value.trim();
+    const carrier = document.getElementById("carrier").value;
+    const method = document.getElementById("method").value;
+
+    if (address === "") {
+      document.getElementById("addressError").textContent = "Shipping address is required.";
+      isValid = false;
+    }
+
+    if (city === "") {
+      document.getElementById("cityError").textContent = "City is required.";
+      isValid = false;
+    }
+
+    if (state === "") {
+      document.getElementById("stateError").textContent = "State is required.";
+      isValid = false;
+    } else if (state.length !== 2) {
+      document.getElementById("stateError").textContent = "State must be 2 characters.";
+      isValid = false;
+    }
+
+    if (zip === "") {
+      document.getElementById("zipError").textContent = "ZIP code is required.";
+      isValid = false;
+    } else if (!/^\d{5}$/.test(zip)) {
+      document.getElementById("zipError").textContent = "ZIP code must be 5 digits.";
+      isValid = false;
+    }
+
+    if (carrier === "") {
+      document.getElementById("carrierError").textContent = "Please select a shipping carrier.";
+      isValid = false;
+    }
+
+    if (method === "") {
+      document.getElementById("methodError").textContent = "Please select a shipping method.";
+      isValid = false;
+    }
+
+    return isValid;
+  }
+
+  /* Team Task Author: David Baram - Task 5 JSON Product Document */
+  /* Team Task Author: David Baram - Task 6 jQuery */
+  $("#saveShippingBtn").on("click", function () {
+    if (validateShippingForm()) {
+      const shippingDetails = {
+        address: $("#address").val().trim(),
+        city: $("#city").val().trim(),
+        state: $("#state").val().trim().toUpperCase(),
+        zip: $("#zip").val().trim(),
+        carrier: $("#carrier").val(),
+        method: $("#method").val()
+      };
+
+      localStorage.setItem("shippingDetails", JSON.stringify(shippingDetails));
+
+      const scope = angular.element(document.body).scope();
+      scope.$apply(function () {
+        scope.shippingJson = shippingDetails;
+      });
+
+      alert("Shipping details saved successfully.");
+    }
+  });
+
+  /* Team Task Author: Brandon Holzhauer - Task 8 AngularJS */
+  const app = angular.module("shippingApp", []);
+
+  app.controller("ShippingController", function($scope) {
+    $scope.shipping = {
+      address: "",
+      city: "",
+      state: "",
+      zip: "",
+      carrier: "",
+      method: ""
+    };
+
+    $scope.shippingJson = {};
+
+    const savedShipping = JSON.parse(localStorage.getItem("shippingDetails"));
+    if (savedShipping) {
+      $scope.shipping = savedShipping;
+      $scope.shippingJson = savedShipping;
+    }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
