@@ -1,359 +1,362 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Big Chungus Bakery | Shopping Cart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Big Chungus Bakery | Shopping Cart</title>
 
-<!-- Team Task Author: Khan, Afnan Ali - Task 1 HTML -->
-<!-- Team Task Author: Khan, Afnan Ali - Task 2 CSS -->
-<!-- Team Task Author: Khan, Afnan Ali - Task 3 Bootstrap -->
-<!-- Team Task Author: David Baram - Task 4 JavaScript -->
-<!-- Team Task Author: David Baram - Task 5 JSON Product Document -->
-<!-- Team Task Author: David Baram - Task 6 jQuery -->
-<!-- Team Task Author: Brandon Holzhauer - Task 7 AJAX -->
+  <!-- Team Task Author: Khan, Afnan Ali - Task 1 HTML -->
+  <!-- Team Task Author: Khan, Afnan Ali - Task 2 CSS -->
+  <!-- Team Task Author: Khan, Afnan Ali - Task 3 Bootstrap -->
+  <!-- Team Task Author: David Baram - Task 4 JavaScript -->
+  <!-- Team Task Author: David Baram - Task 5 JSON Product Document -->
+  <!-- Team Task Author: David Baram - Task 6 jQuery -->
+  <!-- Team Task Author: Brandon Holzhauer - Task 7 AJAX -->
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<style>
-  :root {
-    --bg: #fffaf3;
-    --text: #1f2937;
-    --muted: #6b7280;
-    --shadow: 0 10px 30px rgba(0,0,0,.08);
-    --radius: 18px;
-    --max-width: 1100px;
-  }
+  <style>
+    :root {
+      --bg: #fffaf3;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+      --max-width: 1100px;
+    }
 
-  * { box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
-  body {
-    margin: 0;
-    font-family: system-ui, Arial, sans-serif;
-    color: var(--text);
-    background:
-      radial-gradient(1200px 600px at 20% -10%, rgba(234,88,12,.18), transparent 55%),
-      var(--bg);
-  }
+    body {
+      margin: 0;
+      font-family: system-ui, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(234,88,12,.18), transparent 55%),
+        var(--bg);
+    }
 
-  header, nav, main, footer {
-    max-width: var(--max-width);
-    margin: auto;
-    padding: 16px;
-  }
+    header, nav, main, footer {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 16px;
+    }
 
-  .banner {
-    padding: 18px;
-    background: rgba(255,255,255,.8);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
+    .banner {
+      padding: 18px;
+      background: rgba(255,255,255,.8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
 
-  .primary-nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
-    margin: 0;
-    background: rgba(255,255,255,.7);
-    border-radius: var(--radius);
-  }
+    .primary-nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+      margin: 0;
+      background: rgba(255,255,255,.7);
+      border-radius: var(--radius);
+    }
 
-  .primary-nav a {
-    padding: 10px 12px;
-    border-radius: 999px;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--text);
-  }
+    .primary-nav a {
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
 
-  .primary-nav a:hover {
-    background: rgba(234,88,12,.12);
-  }
+    .primary-nav a:hover {
+      background: rgba(234,88,12,.12);
+    }
 
-  .card-box {
-    background: rgba(255,255,255,.92);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 20px;
-    height: 100%;
-  }
+    .card-box {
+      background: rgba(255,255,255,.92);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      height: 100%;
+    }
 
-  .product-card {
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    border: none;
-  }
+    .product-card {
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: none;
+    }
 
-  pre {
-    background: #111827;
-    color: #f9fafb;
-    padding: 16px;
-    border-radius: 12px;
-    overflow-x: auto;
-    min-height: 240px;
-  }
+    pre {
+      background: #111827;
+      color: #f9fafb;
+      padding: 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+      min-height: 240px;
+    }
 
-  footer {
-    text-align: center;
-    color: var(--muted);
-  }
-</style>
+    footer {
+      text-align: center;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <section class="banner">
-    <h1 class="mb-2">Big Chungus Bakery</h1>
-    <p class="mb-0">Shopping Cart Web Page</p>
-  </section>
-</header>
+  <header>
+    <section class="banner">
+      <h1 class="mb-2">Big Chungus Bakery</h1>
+      <p class="mb-0">Shopping Cart Web Page</p>
+    </section>
+  </header>
 
-<nav class="primary-nav">
-  <ul>
-    <li><a href="index.html">Storefront</a></li>
-    <li><a href="product.html">Product Management</a></li>
-    <li><a href="shipping.html">Shipping Selection</a></li>
-    <li><a href="shoppingcart.html">Shopping Cart</a></li>
-  </ul>
-</nav>
+  <nav class="primary-nav">
+    <ul>
+      <li><a href="index.html">Storefront</a></li>
+      <li><a href="product.html">Product Management</a></li>
+      <li><a href="shipping.html">Shipping Selection</a></li>
+      <li><a href="shoppingcart.html">Shopping Cart</a></li>
+      <li><a href="billings.html">Billing Details</a></li>
+      <li><a href="returns.html">Handle Returns</a></li>
+    </ul>
+  </nav>
 
-<main>
-  <div class="row g-4">
-    <div class="col-lg-8">
-      <section class="card-box mb-4">
-        <h2 class="mb-3">Search Products</h2>
-        <input type="text" id="searchBox" class="form-control mb-4" placeholder="Search products by name...">
-        <div id="productList" class="row g-3"></div>
-      </section>
+  <main>
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <section class="card-box mb-4">
+          <h2 class="mb-3">Search Products</h2>
+          <input type="text" id="searchBox" class="form-control mb-4" placeholder="Search products by name...">
+          <div id="productList" class="row g-3"></div>
+        </section>
 
-      <section class="card-box">
-        <h2 class="mb-3">Shopping Cart</h2>
-        <ul id="cartItems" class="list-group mb-3"></ul>
-        <h4>Total: $<span id="cartTotal">0.00</span></h4>
-        <div class="d-flex gap-2 flex-wrap mt-3">
-          <button type="button" id="sendOrderBtn" class="btn btn-primary">Send Order JSON</button>
-          <button type="button" id="clearCartBtn" class="btn btn-outline-danger">Clear Cart</button>
-        </div>
-        <p id="ajaxMessage" class="mt-3 mb-0 fw-semibold"></p>
-      </section>
+        <section class="card-box">
+          <h2 class="mb-3">Shopping Cart</h2>
+          <ul id="cartItems" class="list-group mb-3"></ul>
+          <h4>Total: $<span id="cartTotal">0.00</span></h4>
+          <div class="d-flex gap-2 flex-wrap mt-3">
+            <button type="button" id="sendOrderBtn" class="btn btn-primary">Send Order JSON</button>
+            <button type="button" id="clearCartBtn" class="btn btn-outline-danger">Clear Cart</button>
+            <a href="billings.html" class="btn btn-dark">Go to Billing</a>
+          </div>
+          <p id="ajaxMessage" class="mt-3 mb-0 fw-semibold"></p>
+        </section>
+      </div>
+
+      <div class="col-lg-4">
+        <section class="card-box mb-4">
+          <h3>Saved Shipping Details</h3>
+          <div id="shippingDetailsDisplay"></div>
+        </section>
+
+        <section class="card-box">
+          <h3>JSON Product Document</h3>
+          <pre id="orderJsonPreview"></pre>
+        </section>
+      </div>
     </div>
+  </main>
 
-    <div class="col-lg-4">
-      <section class="card-box mb-4">
-        <h3>Saved Shipping Details</h3>
-        <div id="shippingDetailsDisplay"></div>
-      </section>
+  <footer>
+    <p>© 2026 Big Chungus Bakery</p>
+  </footer>
 
-      <section class="card-box">
-        <h3>JSON Product Document</h3>
-        <pre id="orderJsonPreview"></pre>
-      </section>
-    </div>
-  </div>
-</main>
+  <script>
+    /* Team Task Author: David Baram - Task 4 JavaScript */
+    const productCollection = [
+      {
+        id: 1,
+        name: "Chocolate Croissant",
+        description: "Flaky pastry with rich chocolate filling.",
+        price: 3.25
+      },
+      {
+        id: 2,
+        name: "Cinnamon Roll",
+        description: "Soft baked roll topped with sweet icing.",
+        price: 4.50
+      },
+      {
+        id: 3,
+        name: "Chocolate Cake",
+        description: "Moist layered cake for dessert lovers.",
+        price: 24.99
+      },
+      {
+        id: 4,
+        name: "Blueberry Muffin",
+        description: "Fresh muffin packed with blueberries.",
+        price: 2.99
+      }
+    ];
 
-<footer>
-  <p>© 2026 Big Chungus Bakery</p>
-</footer>
+    let cart = [];
 
-<script>
-  /* Team Task Author: David Baram - Task 4 JavaScript */
-  const productCollection = [
-    {
-      id: 1,
-      name: "Chocolate Croissant",
-      description: "Flaky pastry with rich chocolate filling.",
-      price: 3.25
-    },
-    {
-      id: 2,
-      name: "Cinnamon Roll",
-      description: "Soft baked roll topped with sweet icing.",
-      price: 4.50
-    },
-    {
-      id: 3,
-      name: "Chocolate Cake",
-      description: "Moist layered cake for dessert lovers.",
-      price: 24.99
-    },
-    {
-      id: 4,
-      name: "Blueberry Muffin",
-      description: "Fresh muffin packed with blueberries.",
-      price: 2.99
+    function getShippingDetails() {
+      return JSON.parse(localStorage.getItem("shippingDetails")) || {
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+        carrier: "",
+        method: ""
+      };
     }
-  ];
 
-  let cart = [];
+    function renderProducts(products) {
+      let html = "";
 
-  function getShippingDetails() {
-    return JSON.parse(localStorage.getItem("shippingDetails")) || {
-      address: "",
-      city: "",
-      state: "",
-      zip: "",
-      carrier: "",
-      method: ""
-    };
-  }
-
-  function renderProducts(products) {
-    let html = "";
-
-    $.each(products, function(index, product) {
-      html += `
-      <div class="col-md-6">
-        <div class="card product-card h-100">
-          <div class="card-body">
-            <h5 class="card-title">${product.name}</h5>
-            <p class="card-text">${product.description}</p>
-            <p><strong>$${product.price.toFixed(2)}</strong></p>
-            <button class="btn btn-success addToCartBtn" data-id="${product.id}">
-              Add to Cart
-            </button>
+      $.each(products, function(index, product) {
+        html += `
+        <div class="col-md-6">
+          <div class="card product-card h-100">
+            <div class="card-body">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text">${product.description}</p>
+              <p><strong>$${product.price.toFixed(2)}</strong></p>
+              <button class="btn btn-success addToCartBtn" data-id="${product.id}">
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      `;
-    });
-
-    $("#productList").html(html);
-  }
-
-  function renderCart() {
-    let html = "";
-    let total = 0;
-
-    $.each(cart, function(index, item) {
-      total += item.price;
-      html += `
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span>${item.name}</span>
-        <span>$${item.price.toFixed(2)}</span>
-      </li>
-      `;
-    });
-
-    if (cart.length === 0) {
-      html = `<li class="list-group-item">Cart is empty.</li>`;
-    }
-
-    $("#cartItems").html(html);
-    $("#cartTotal").text(total.toFixed(2));
-
-    renderJsonDocument();
-  }
-
-  function renderShippingDetails() {
-    const shipping = getShippingDetails();
-
-    $("#shippingDetailsDisplay").html(`
-      <p><strong>Address:</strong> ${shipping.address || "Not provided"}</p>
-      <p><strong>City:</strong> ${shipping.city || "Not provided"}</p>
-      <p><strong>State:</strong> ${shipping.state || "Not provided"}</p>
-      <p><strong>ZIP:</strong> ${shipping.zip || "Not provided"}</p>
-      <p><strong>Carrier:</strong> ${shipping.carrier || "Not selected"}</p>
-      <p><strong>Method:</strong> ${shipping.method || "Not selected"}</p>
-    `);
-  }
-
-  /* Team Task Author: David Baram - Task 5 JSON Product Document */
-  function renderJsonDocument() {
-    const shipping = getShippingDetails();
-
-    const orderDocument = {
-      shippingDetails: {
-        address: shipping.address,
-        city: shipping.city,
-        state: shipping.state,
-        zip: shipping.zip,
-        carrier: shipping.carrier,
-        method: shipping.method
-      },
-      shoppingCart: cart
-    };
-
-    document.getElementById("orderJsonPreview").textContent =
-      JSON.stringify(orderDocument, null, 2);
-  }
-
-  /* Team Task Author: David Baram - Task 6 jQuery */
-  $(document).ready(function() {
-    renderProducts(productCollection);
-    renderCart();
-    renderShippingDetails();
-    renderJsonDocument();
-
-    $("#searchBox").on("keyup", function() {
-      const query = $(this).val().toLowerCase();
-
-      const filteredProducts = $.grep(productCollection, function(product) {
-        return product.name.toLowerCase().includes(query);
+        `;
       });
 
-      renderProducts(filteredProducts);
-    });
-
-    $(document).on("click", ".addToCartBtn", function() {
-      const productId = parseInt($(this).attr("data-id"));
-      const selectedProduct = productCollection.find(product => product.id === productId);
-
-      if (selectedProduct) {
-        cart.push(selectedProduct);
-        renderCart();
-      }
-    });
-
-    $("#clearCartBtn").on("click", function() {
-      cart = [];
-      renderCart();
-      $("#ajaxMessage").text("Cart cleared.");
-    });
-  });
-
-  /* Team Task Author: Brandon Holzhauer - Task 7 AJAX */
-  $("#sendOrderBtn").on("click", function() {
-    const shipping = getShippingDetails();
-
-    const orderDocument = {
-      shippingDetails: {
-        address: shipping.address,
-        city: shipping.city,
-        state: shipping.state,
-        zip: shipping.zip,
-        carrier: shipping.carrier,
-        method: shipping.method
-      },
-      shoppingCart: cart
-    };
-
-    if (cart.length === 0) {
-      $("#ajaxMessage").text("Add at least one product before sending the order.");
-      return;
+      $("#productList").html(html);
     }
 
-    $("#ajaxMessage").text("Sending order JSON to REST API service...");
+    function renderCart() {
+      let html = "";
+      let total = 0;
 
-    $.ajax({
-      url: "https://jsonplaceholder.typicode.com/posts",
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify(orderDocument),
-      success: function(response) {
-        console.log("AJAX success:", response);
-        $("#ajaxMessage").text("Order JSON sent successfully.");
-      },
-      error: function() {
-        $("#ajaxMessage").text("Unable to send order right now.");
+      $.each(cart, function(index, item) {
+        total += item.price;
+        html += `
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>${item.name}</span>
+          <span>$${item.price.toFixed(2)}</span>
+        </li>
+        `;
+      });
+
+      if (cart.length === 0) {
+        html = `<li class="list-group-item">Cart is empty.</li>`;
       }
-    });
-  });
-</script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      $("#cartItems").html(html);
+      $("#cartTotal").text(total.toFixed(2));
+
+      renderJsonDocument();
+    }
+
+    function renderShippingDetails() {
+      const shipping = getShippingDetails();
+
+      $("#shippingDetailsDisplay").html(`
+        <p><strong>Address:</strong> ${shipping.address || "Not provided"}</p>
+        <p><strong>City:</strong> ${shipping.city || "Not provided"}</p>
+        <p><strong>State:</strong> ${shipping.state || "Not provided"}</p>
+        <p><strong>ZIP:</strong> ${shipping.zip || "Not provided"}</p>
+        <p><strong>Carrier:</strong> ${shipping.carrier || "Not selected"}</p>
+        <p><strong>Method:</strong> ${shipping.method || "Not selected"}</p>
+      `);
+    }
+
+    /* Team Task Author: David Baram - Task 5 JSON Product Document */
+    function renderJsonDocument() {
+      const shipping = getShippingDetails();
+
+      const orderDocument = {
+        shippingDetails: {
+          address: shipping.address,
+          city: shipping.city,
+          state: shipping.state,
+          zip: shipping.zip,
+          carrier: shipping.carrier,
+          method: shipping.method
+        },
+        shoppingCart: cart
+      };
+
+      document.getElementById("orderJsonPreview").textContent =
+        JSON.stringify(orderDocument, null, 2);
+    }
+
+    /* Team Task Author: David Baram - Task 6 jQuery */
+    $(document).ready(function() {
+      renderProducts(productCollection);
+      renderCart();
+      renderShippingDetails();
+      renderJsonDocument();
+
+      $("#searchBox").on("keyup", function() {
+        const query = $(this).val().toLowerCase();
+
+        const filteredProducts = $.grep(productCollection, function(product) {
+          return product.name.toLowerCase().includes(query);
+        });
+
+        renderProducts(filteredProducts);
+      });
+
+      $(document).on("click", ".addToCartBtn", function() {
+        const productId = parseInt($(this).attr("data-id"));
+        const selectedProduct = productCollection.find(product => product.id === productId);
+
+        if (selectedProduct) {
+          cart.push(selectedProduct);
+          renderCart();
+        }
+      });
+
+      $("#clearCartBtn").on("click", function() {
+        cart = [];
+        renderCart();
+        $("#ajaxMessage").text("Cart cleared.");
+      });
+    });
+
+    /* Team Task Author: Brandon Holzhauer - Task 7 AJAX */
+    $("#sendOrderBtn").on("click", function() {
+      const shipping = getShippingDetails();
+
+      const orderDocument = {
+        shippingDetails: {
+          address: shipping.address,
+          city: shipping.city,
+          state: shipping.state,
+          zip: shipping.zip,
+          carrier: shipping.carrier,
+          method: shipping.method
+        },
+        shoppingCart: cart
+      };
+
+      if (cart.length === 0) {
+        $("#ajaxMessage").text("Add at least one product before sending the order.");
+        return;
+      }
+
+      $("#ajaxMessage").text("Sending order JSON to REST API service...");
+
+      $.ajax({
+        url: "https://jsonplaceholder.typicode.com/posts",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(orderDocument),
+        success: function(response) {
+          console.log("AJAX success:", response);
+          $("#ajaxMessage").text("Order JSON sent successfully.");
+        },
+        error: function() {
+          $("#ajaxMessage").text("Unable to send order right now.");
+        }
+      });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
