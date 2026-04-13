@@ -1,193 +1,197 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Big Chungus Bakery | Storefront</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Big Chungus Bakery | Storefront</title>
 
-<!-- Team Task Author: Khan, Afnan Ali - Storefront HTML structure -->
-<!-- Team Task Author: Khan, Afnan Ali - Storefront CSS styling -->
-<!-- Team Task Author: Khan, Afnan Ali - Storefront Bootstrap integration -->
+  <!-- Team Task Author: Khan, Afnan Ali - Storefront HTML structure -->
+  <!-- Team Task Author: Khan, Afnan Ali - Storefront CSS styling -->
+  <!-- Team Task Author: Khan, Afnan Ali - Storefront Bootstrap integration -->
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<style>
-:root {
-  --bg: #fffaf3;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --shadow: 0 10px 30px rgba(0,0,0,.08);
-  --radius: 18px;
-  --max-width: 1100px;
-}
+  <style>
+    :root {
+      --bg: #fffaf3;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 18px;
+      --max-width: 1100px;
+    }
 
-* { box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  font-family: system-ui, Arial, sans-serif;
-  color: var(--text);
-  background:
-    radial-gradient(1200px 600px at 20% -10%, rgba(234,88,12,.18), transparent 55%),
-    var(--bg);
-}
+    body {
+      margin: 0;
+      font-family: system-ui, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(234,88,12,.18), transparent 55%),
+        var(--bg);
+    }
 
-header, nav, main, footer {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 16px;
-}
+    header, nav, main, footer {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 16px;
+    }
 
-.banner {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 18px;
-  padding: 18px;
-  background: rgba(255,255,255,.75);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
+    .banner {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,.75);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
 
-.primary-nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
-  margin: 0;
-  background: rgba(255,255,255,.7);
-  border-radius: var(--radius);
-}
+    .primary-nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+      margin: 0;
+      background: rgba(255,255,255,.7);
+      border-radius: var(--radius);
+    }
 
-.primary-nav a {
-  padding: 10px 12px;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--text);
-}
+    .primary-nav a {
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text);
+    }
 
-.primary-nav a:hover {
-  background: rgba(234,88,12,.12);
-}
+    .primary-nav a:hover {
+      background: rgba(234,88,12,.12);
+    }
 
-.card-box {
-  background: rgba(255,255,255,.9);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 20px;
-  height: 100%;
-}
+    .card-box {
+      background: rgba(255,255,255,.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      height: 100%;
+    }
 
-.hero-grid,
-.product-grid {
-  display: grid;
-  gap: 18px;
-}
+    .hero-grid,
+    .product-grid {
+      display: grid;
+      gap: 18px;
+    }
 
-.hero-grid {
-  grid-template-columns: 2fr 1fr;
-}
+    .hero-grid {
+      grid-template-columns: 2fr 1fr;
+    }
 
-.product-grid {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-}
+    .product-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
 
-.product-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 14px;
-  margin-bottom: 12px;
-}
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 12px;
+    }
 
-footer {
-  text-align: center;
-  color: var(--muted);
-}
+    footer {
+      text-align: center;
+      color: var(--muted);
+    }
 
-@media (max-width: 768px) {
-  .banner,
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+    @media (max-width: 768px) {
+      .banner,
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <section class="banner">
-    <img src="https://placehold.co/140x140?text=BCB" alt="Big Chungus Bakery logo" style="border-radius:50%;">
-    <div>
-      <h1>Big Chungus Bakery</h1>
-      <p>Fresh baked goods, drinks, and easy online ordering.</p>
-    </div>
-  </section>
-</header>
-
-<nav class="primary-nav">
-  <ul>
-    <li><a href="index.html">Storefront</a></li>
-    <li><a href="product.html">Product Management</a></li>
-    <li><a href="shipping.html">Shipping Selection</a></li>
-    <li><a href="shoppingcart.html">Shopping Cart</a></li>
-  </ul>
-</nav>
-
-<main>
-  <section class="hero-grid mb-4">
-    <div class="card-box">
-      <h2>Welcome to Our Storefront</h2>
-      <p>Welcome to our wonderful Bakery. Here you will find all of our food options.</p>
-      <div class="d-flex gap-2 flex-wrap mt-3">
-        <a href="product.html" class="btn btn-primary">Manage Products</a>
-        <a href="shipping.html" class="btn btn-warning">Shipping Selection</a>
-        <a href="shoppingcart.html" class="btn btn-success">Open Shopping Cart</a>
+  <header>
+    <section class="banner">
+      <img src="https://placehold.co/140x140?text=BCB" alt="Big Chungus Bakery logo" style="border-radius:50%;">
+      <div>
+        <h1>Big Chungus Bakery</h1>
+        <p>Fresh baked goods, drinks, and easy online ordering.</p>
       </div>
-    </div>
+    </section>
+  </header>
 
-    <aside class="card-box">
-      <h3>Store Hours</h3>
-      <p>Mon - Fri: 7:00 AM - 7:00 PM</p>
-      <p>Sat - Sun: 8:00 AM - 5:00 PM</p>
-      <hr>
-      <p class="mb-0"><strong>Pickup reminder:</strong> Weekend orders sell fast, so place orders early.</p>
-    </aside>
-  </section>
+  <nav class="primary-nav">
+    <ul>
+      <li><a href="index.html">Storefront</a></li>
+      <li><a href="product.html">Product Management</a></li>
+      <li><a href="shipping.html">Shipping Selection</a></li>
+      <li><a href="shoppingcart.html">Shopping Cart</a></li>
+      <li><a href="billings.html">Billing Details</a></li>
+      <li><a href="returns.html">Handle Returns</a></li>
+    </ul>
+  </nav>
 
-  <section class="card-box">
-    <h2 class="mb-3">Featured Bakery Items</h2>
-    <div class="product-grid">
-      <article class="product-card card-box">
-        <img src="https://placehold.co/500x300?text=Chocolate+Croissant" alt="Chocolate Croissant">
-        <h4>Chocolate Croissant</h4>
-        <p>Flaky pastry with rich chocolate filling.</p>
-        <p><strong>$3.25</strong></p>
-      </article>
+  <main>
+    <section class="hero-grid mb-4">
+      <div class="card-box">
+        <h2>Welcome to Our Storefront</h2>
+        <p>Welcome to our wonderful bakery. Here you will find all of our food options and customer order pages.</p>
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <a href="product.html" class="btn btn-primary">Manage Products</a>
+          <a href="shipping.html" class="btn btn-warning">Shipping Selection</a>
+          <a href="shoppingcart.html" class="btn btn-success">Shopping Cart</a>
+          <a href="billings.html" class="btn btn-dark">Billing Details</a>
+          <a href="returns.html" class="btn btn-secondary">Handle Returns</a>
+        </div>
+      </div>
 
-      <article class="product-card card-box">
-        <img src="https://placehold.co/500x300?text=Cinnamon+Roll" alt="Cinnamon Roll">
-        <h4>Cinnamon Roll</h4>
-        <p>Soft baked roll topped with sweet icing.</p>
-        <p><strong>$4.50</strong></p>
-      </article>
+      <aside class="card-box">
+        <h3>Store Hours</h3>
+        <p>Mon - Fri: 7:00 AM - 7:00 PM</p>
+        <p>Sat - Sun: 8:00 AM - 5:00 PM</p>
+        <hr>
+        <p class="mb-0"><strong>Pickup reminder:</strong> Weekend orders sell fast, so place orders early.</p>
+      </aside>
+    </section>
 
-      <article class="product-card card-box">
-        <img src="https://placehold.co/500x300?text=Chocolate+Cake" alt="Chocolate Cake">
-        <h4>Chocolate Cake</h4>
-        <p>Moist layered cake for dessert lovers.</p>
-        <p><strong>$24.99</strong></p>
-      </article>
-    </div>
-  </section>
-</main>
+    <section class="card-box">
+      <h2 class="mb-3">Featured Bakery Items</h2>
+      <div class="product-grid">
+        <article class="product-card card-box">
+          <img src="https://placehold.co/500x300?text=Chocolate+Croissant" alt="Chocolate Croissant">
+          <h4>Chocolate Croissant</h4>
+          <p>Flaky pastry with rich chocolate filling.</p>
+          <p><strong>$3.25</strong></p>
+        </article>
 
-<footer>
-  <p>© 2026 Big Chungus Bakery</p>
-</footer>
+        <article class="product-card card-box">
+          <img src="https://placehold.co/500x300?text=Cinnamon+Roll" alt="Cinnamon Roll">
+          <h4>Cinnamon Roll</h4>
+          <p>Soft baked roll topped with sweet icing.</p>
+          <p><strong>$4.50</strong></p>
+        </article>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <article class="product-card card-box">
+          <img src="https://placehold.co/500x300?text=Chocolate+Cake" alt="Chocolate Cake">
+          <h4>Chocolate Cake</h4>
+          <p>Moist layered cake for dessert lovers.</p>
+          <p><strong>$24.99</strong></p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Big Chungus Bakery</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
