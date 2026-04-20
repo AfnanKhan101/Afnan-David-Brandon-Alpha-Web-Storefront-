@@ -22,7 +22,7 @@
 <style>
 body { background:#fffaf3; font-family:Arial; }
 .card-box { background:#fff; padding:20px; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,.1);}
-.json-box { background:#111; color:#fff; padding:15px; border-radius:10px;}
+.json-box { background:#111; color:#fff; padding:15px; border-radius:10px; min-height:220px; }
 </style>
 </head>
 
@@ -33,85 +33,96 @@ body { background:#fffaf3; font-family:Arial; }
 <a href="product.html">Products</a> |
 <a href="shoppingcart.html">Cart</a> |
 <a href="shipping.html">Shipping</a> |
-<a href="billings.html">Billing</a>
+<a href="billings.html">Billing</a> |
+<a href="returns.html">Returns</a>
 </nav>
 
 <main class="container">
 
 <div class="row">
-<div class="col-md-8">
+  <div class="col-md-8">
+    <div class="card-box mb-3">
+      <h2>Handle Returns</h2>
 
-<div class="card-box mb-3">
-<h2>Handle Returns</h2>
+      <input id="search" class="form-control mb-2" placeholder="Search product">
+      <button id="addReturn" class="btn btn-warning">Add Return</button>
+      <button id="submitReturn" class="btn btn-success">Submit Return</button>
 
-<input id="search" class="form-control mb-2" placeholder="Search product">
-<button id="addReturn" class="btn btn-warning">Add Return</button>
-<button id="submitReturn" class="btn btn-success">Submit Return</button>
+      <ul id="returnList" class="mt-3"></ul>
 
-<ul id="returnList"></ul>
+      <p id="returnMsg" class="mt-2"></p>
+    </div>
+  </div>
 
-<p id="returnMsg"></p>
-
-</div>
-
-</div>
-
-<div class="col-md-4">
-<div class="card-box">
-<h3>Return JSON</h3>
-<pre id="returnJSON" class="json-box"></pre>
-</div>
-</div>
-
+  <div class="col-md-4">
+    <div class="card-box">
+      <h3>Return JSON</h3>
+      <pre id="returnJSON" class="json-box"></pre>
+    </div>
+  </div>
 </div>
 
 </main>
 
 <script>
-
 /* David Baram - Task 4 JavaScript */
-let returnItems=[];
+let returnItems = [];
 
 /* David Baram - Task 5 JSON */
-function buildReturnJSON(){
+function buildReturnJSON() {
   return {
     returnCollection: returnItems
   };
 }
 
 /* David Baram - Task 6 jQuery */
-$("#addReturn").click(function(){
-  let item=$("#search").val();
-  if(item==="") return;
+$("#addReturn").click(function() {
+  let item = $("#search").val().trim();
 
-  returnItems.push({product:item});
+  if (item === "") {
+    $("#returnMsg").text("Enter a product first.");
+    return;
+  }
+
+  returnItems.push({ product: item });
   $("#returnList").append(`<li>${item}</li>`);
+  $("#returnJSON").text(JSON.stringify(buildReturnJSON(), null, 2));
+  $("#returnMsg").text("Return item added.");
+  $("#search").val("");
 });
 
 /* Brandon Holzhauer - Task 7 AJAX */
-$("#submitReturn").click(function(){
+$("#submitReturn").click(function() {
   let data = buildReturnJSON();
 
-  $("#returnJSON").text(JSON.stringify(data,null,2));
+  if (returnItems.length === 0) {
+    $("#returnMsg").text("Add at least one return item first.");
+    return;
+  }
+
+  $("#returnJSON").text(JSON.stringify(data, null, 2));
 
   $.ajax({
-    url:"https://jsonplaceholder.typicode.com/posts",
-    type:"POST",
-    data:JSON.stringify(data),
-    contentType:"application/json",
-    success:function(){
-      $("#returnMsg").text("Return sent to API");
+    url: "http://localhost:3005/returns",
+    type: "POST",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    success: function(response) {
+      console.log("Return sent to server:", response);
+      $("#returnMsg").text("Return sent successfully to Node server.");
+    },
+    error: function() {
+      $("#returnMsg").text("Error sending return to Node server.");
     }
   });
 });
 
 /* Brandon Holzhauer - Task 8 AngularJS */
-const app = angular.module("returnsApp",[]);
-app.controller("ReturnController", function($scope){});
+const app = angular.module("returnsApp", []);
+app.controller("ReturnController", function($scope) {});
 
 /* Brandon Holzhauer - Task 9 NodeJS */
-/* Placeholder for Node server connection */
-
+/* Node route target: /returns on Team 5 port 3005 */
 </script>
 
 </body>
