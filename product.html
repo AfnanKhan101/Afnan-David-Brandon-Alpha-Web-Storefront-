@@ -11,7 +11,7 @@
   <!-- Team Task Author: David Baram - Task 4 JavaScript -->
   <!-- Team Task Author: David Baram - Task 5 JSON -->
   <!-- Team Task Author: Brandon Holzhauer - Task 6 jQuery -->
-  <!-- Team Task Author: Brandon Holzhauer - Task 7 Product Details -->
+  <!-- Team Task Author: Brandon Holzhauer - Task 7 AJAX -->
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -305,6 +305,23 @@
         JSON.stringify(products, null, 2);
     }
 
+    /* Team Task Author: Brandon Holzhauer - Task 7 AJAX */
+    function sendProductsToServer() {
+      $.ajax({
+        url: "http://localhost:3005/products",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({ products: products }),
+        success: function(response) {
+          console.log("Sent to server:", response);
+          $("#searchMessage").text("Product JSON updated and sent to server successfully.");
+        },
+        error: function() {
+          $("#searchMessage").text("Error sending JSON to server.");
+        }
+      });
+    }
+
     document.getElementById("productForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
@@ -343,14 +360,13 @@
       }
 
       renderJSON();
-      document.getElementById("searchMessage").textContent = "Product JSON document updated.";
+      sendProductsToServer();
+      document.getElementById("searchMessage").textContent = "Product JSON updated and sent to server.";
     });
 
     renderJSON();
 
     /* Team Task Author: Brandon Holzhauer - Task 6 jQuery */
-    /* Team Task Author: Brandon Holzhauer - Task 7 Product Details */
-
     $("#searchBtn").on("click", function() {
       const id = $("#searchProductId").val().trim();
 
