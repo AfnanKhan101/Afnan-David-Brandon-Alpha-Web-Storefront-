@@ -339,19 +339,19 @@
         return;
       }
 
-      $("#ajaxMessage").text("Sending order JSON to REST API service...");
+      $("#ajaxMessage").text("Sending order JSON to NodeJS server...");
 
       $.ajax({
-        url: "https://jsonplaceholder.typicode.com/posts",
+        url: "http://localhost:3005/cart",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(orderDocument),
         success: function(response) {
-          console.log("AJAX success:", response);
-          $("#ajaxMessage").text("Order JSON sent successfully.");
+          console.log("Sent to Node server:", response);
+          $("#ajaxMessage").text("Order sent successfully to Node server.");
         },
         error: function() {
-          $("#ajaxMessage").text("Unable to send order right now.");
+          $("#ajaxMessage").text("Error sending to Node server.");
         }
       });
     });
