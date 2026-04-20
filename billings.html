@@ -22,7 +22,7 @@
 <style>
 body { background:#fffaf3; font-family:Arial; }
 .card-box { background:#fff; padding:20px; border-radius:15px; box-shadow:0 10px 20px rgba(0,0,0,.1);}
-.json-box { background:#111; color:#fff; padding:15px; border-radius:10px;}
+.json-box { background:#111; color:#fff; padding:15px; border-radius:10px; min-height:220px; }
 </style>
 </head>
 
@@ -33,36 +33,33 @@ body { background:#fffaf3; font-family:Arial; }
 <a href="product.html">Products</a> |
 <a href="shoppingcart.html">Cart</a> |
 <a href="shipping.html">Shipping</a> |
+<a href="billings.html">Billing</a> |
 <a href="returns.html">Returns</a>
 </nav>
 
 <main class="container">
 
 <div class="row">
-<div class="col-md-8">
+  <div class="col-md-8">
+    <div class="card-box mb-3">
+      <h2>Billing Details</h2>
 
-<div class="card-box mb-3">
-<h2>Billing Details</h2>
+      <input id="name" class="form-control mb-2" placeholder="Full Name">
+      <input id="card" class="form-control mb-2" placeholder="Card Number">
+      <input id="zip" class="form-control mb-2" placeholder="ZIP">
 
-<input id="name" class="form-control mb-2" placeholder="Full Name">
-<input id="card" class="form-control mb-2" placeholder="Card Number">
-<input id="zip" class="form-control mb-2" placeholder="ZIP">
+      <button id="submitBilling" class="btn btn-primary">Submit Billing</button>
 
-<button id="submitBilling" class="btn btn-primary">Submit Billing</button>
+      <p id="msg" class="mt-2"></p>
+    </div>
+  </div>
 
-<p id="msg" class="mt-2"></p>
-
-</div>
-
-</div>
-
-<div class="col-md-4">
-<div class="card-box">
-<h3>Billing JSON</h3>
-<pre id="billingJSON" class="json-box"></pre>
-</div>
-</div>
-
+  <div class="col-md-4">
+    <div class="card-box">
+      <h3>Billing JSON</h3>
+      <pre id="billingJSON" class="json-box"></pre>
+    </div>
+  </div>
 </div>
 
 </main>
@@ -70,16 +67,16 @@ body { background:#fffaf3; font-family:Arial; }
 <script>
 /* David Baram - Task 4 JavaScript */
 function validateBilling(data){
-  if(data.name==="" || data.card==="") return false;
+  if(data.name.trim() === "" || data.card.trim() === "" || data.zip.trim() === "") return false;
   return true;
 }
 
 /* David Baram - Task 5 JSON */
 function buildBillingJSON(){
   return {
-    name: $("#name").val(),
-    card: $("#card").val(),
-    zip: $("#zip").val()
+    name: $("#name").val().trim(),
+    card: $("#card").val().trim(),
+    zip: $("#zip").val().trim()
   };
 }
 
@@ -92,8 +89,8 @@ $("#submitBilling").click(function(){
     return;
   }
 
-  $("#billingJSON").text(JSON.stringify(data,null,2));
-  $("#msg").text("Billing JSON Generated");
+  $("#billingJSON").text(JSON.stringify(data, null, 2));
+  $("#msg").text("Billing JSON generated");
 
   sendBilling(data);
 });
@@ -101,22 +98,26 @@ $("#submitBilling").click(function(){
 /* Brandon Holzhauer - Task 7 AJAX */
 function sendBilling(data){
   $.ajax({
-    url:"https://jsonplaceholder.typicode.com/posts",
-    type:"POST",
-    data:JSON.stringify(data),
-    contentType:"application/json",
-    success:function(){
-      $("#msg").text("Sent to API");
+    url: "http://localhost:3005/billing",
+    type: "POST",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    success: function(response){
+      console.log("Billing sent to server:", response);
+      $("#msg").text("Billing sent successfully to Node server.");
+    },
+    error: function(){
+      $("#msg").text("Error sending billing to Node server.");
     }
   });
 }
 
 /* Brandon Holzhauer - Task 8 AngularJS */
-const app = angular.module("billingApp",[]);
+const app = angular.module("billingApp", []);
 app.controller("BillingController", function($scope){});
 
 /* Brandon Holzhauer - Task 9 NodeJS */
-/* (Placeholder: will connect to Node server in next assignment) */
+/* Node route target: /billing on Team 5 port 3005 */
 
 </script>
 
